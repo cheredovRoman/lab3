@@ -83,6 +83,12 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
 def count_ships(board):
     if board == 0:
         count = 0
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 1:
+                # Check if this is a new ship
+                if (i == 0 or board[i - 1][j] == 0) and (j == 0 or board[i][j - 1] == 0):
+                    count += 1
     return count
 def check_winner(x, y, enemy_ships, boom):
         win = False

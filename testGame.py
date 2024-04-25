@@ -33,7 +33,7 @@ class TestGame(unittest.TestCase):
             [1, 8, 9]
         ]
         self.assertFalse(check_winner(1, 2, list1, list2), False))
-    def test_check_winner_true(self):
+def test_check_winner_true(self):
         list1 = [
             [3, 5, 7],
             [2, 4, 6],
