@@ -80,7 +80,10 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
         # print(ships_list)
         #print(enemy_ships)
         return enemy_ships
-
+def count_ships(board):
+    if board == 0:
+        count = 0
+    return count
 def check_winner(x, y, enemy_ships, boom):
         win = False
         if enemy_ships[y][x] > 0:
