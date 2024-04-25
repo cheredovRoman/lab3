@@ -79,5 +79,5 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
 
         # print(sum_1_enemy)
         # print(ships_list)
-        print(enemy_ships)
+        #print(enemy_ships)
         return enemy_ships
