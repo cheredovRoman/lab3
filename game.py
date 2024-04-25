@@ -123,6 +123,7 @@ def add_to_all(event):
             points[ip_y][ip_x] = _type
             draw_point(ip_x, ip_y)
             if check_winner(ip_x, ip_y, enemy_ships, boom):
+                messagebox.askquestion("Win", "Вы победили")
                 print("Победа!")
                 points = [[10 for i in range(s_x + 1)] for i in range(s_y + 1)]
         print(len(list_ids))
