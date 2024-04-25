@@ -1,5 +1,6 @@
 import unittest
 from logic import *
+from game import draw_point
 
 class TestGame(unittest.TestCase):
 

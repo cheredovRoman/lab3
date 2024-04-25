@@ -74,6 +74,9 @@ b0.place(x=size_canvas_x + 20, y=30)
 b1 = Button(tk, text="Начать заново!", command=button_begin_again)
 b1.place(x=size_canvas_x + 20, y=70)
 
+def draw_point(x, y):
+    return 1
+
 
 def add_to_all(event):
     _type = 0  # ЛКМ
