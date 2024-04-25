@@ -22,10 +22,30 @@ class TestGame(unittest.TestCase):
         #     self.assertEqual(draw_point(1, 1), 1)
 
     def test_check_winner_false(self):
-        self.assertFalse(check_winner(1, 1), False)
+        list1 = [
+            [3, 5, 7],
+            [2, 4, 6],
+            [1, 8, 9]
+        ]
+        list2 = [
+            [3, 5, 7],
+            [2, 1, 6],
+            [1, 8, 9]
+        ]
+        self.assertFalse(check_winner(list1, list2), False)
 
     def test_check_winner_true(self):
-        self.assertTrue(check_winner(1, 1), True)
+        list1 = [
+            [3, 5, 7],
+            [2, 4, 6],
+            [1, 8, 9]
+        ]
+        list2 = [
+            [3, 5, 7],
+            [2, 4, 6],
+            [1, 8, 9]
+        ]
+        self.assertTrue(check_winner(list1, list2), True)
 
 
 if __name__ == '__main__':

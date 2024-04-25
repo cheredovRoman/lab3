@@ -83,3 +83,8 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
 
 def check_winner(enemy_ships, boom):
         win = False
+        sum_enemy_ships = sum(sum(i) for i in zip(*enemy_ships))
+        sum_boom = sum(sum(i) for i in zip(*boom))
+        if sum_enemy_ships == sum_boom:
+            win = True
+        return win
