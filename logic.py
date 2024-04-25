@@ -1,9 +1,14 @@
 import random
+
+# функция генерации кораблей
 def generate_enemy_ships(size, fill):
     if size == 0:
         return 0
     enemy_ships = [[fill for i in range(size)] for i in range(size)]
+
     return enemy_ships
+
+
 def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
     global enemy_ships
     ships_list = []
@@ -78,8 +83,10 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
 
         # print(sum_1_enemy)
         # print(ships_list)
-        #print(enemy_ships)
+        # print(enemy_ships)
         return enemy_ships
+
+
 def count_ships(board):
     count = 0
     if board == 0:
@@ -91,15 +98,18 @@ def count_ships(board):
                 if (i == 0 or board[i - 1][j] == 0) and (j == 0 or board[i][j - 1] == 0):
                     count += 1
     return count
+
+
 def check_winner(x, y, enemy_ships, boom):
-        win = False
-        if enemy_ships[y][x] > 0:
-            boom[y][x] = enemy_ships[y][x]
-        sum_enemy_ships = sum(sum(i) for i in zip(*enemy_ships))
-        sum_boom = sum(sum(i) for i in zip(*boom))
-        if sum_enemy_ships == sum_boom:
-            win = True
-        return win
+    win = False
+    if enemy_ships[y][x] > 0:
+        boom[y][x] = enemy_ships[y][x]
+    sum_enemy_ships = sum(sum(i) for i in zip(*enemy_ships))
+    sum_boom = sum(sum(i) for i in zip(*boom))
+    if sum_enemy_ships == sum_boom:
+        win = True
+    return win
+
 def score(board):
     """
     Функция принимает на вход игровое поле board и возвращает количество очков,
@@ -130,3 +140,8 @@ def score(board):
                 score += 3
             print(score)
     return score
+
+
+
+
+

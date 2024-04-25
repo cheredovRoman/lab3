@@ -2,10 +2,10 @@ import time
 from tkinter import *
 from tkinter import messagebox
 from logic import *
-global boom
 
 tk = Tk()
 app_running = True
+
 # Размер холста
 size_canvas_x = 600
 size_canvas_y = 600
@@ -26,11 +26,9 @@ enemy_ships = [[0 for i in range(s_x + 1)] for i in range(s_y + 1)]
 list_ids = []
 # список где отмечаются выделенные клетки
 points = [[-1 for i in range(s_x + 1)] for i in range(s_y)]
-
-boom = [[0 for i in range(s_x)] for i in range(s_y)]
-
 # список попаданий по кораблям противника
 boom = [[0 for i in range(s_x + 1)] for i in range(s_y)]
+
 def on_closing():
     global app_running
     if messagebox.askokcancel("Выход из игры", "Хотите выйти из игры?"):
@@ -65,7 +63,7 @@ def button_show_enemy():
                 if points[j][i] != -1:
                     color = "green"
                 _id = canvas.create_rectangle(i * step_x, j * step_y, i * step_x + step_x, j * step_y + step_y,
-                                              fill="color")
+                                              fill=color)
                 list_ids.append(_id)
 
 
@@ -73,11 +71,14 @@ def button_begin_again():
     global points
     global enemy_ships
     global list_ids
+    global boom
     for el in list_ids:
         canvas.delete(el)
     list_ids = []
     enemy_ships = generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3)
     points = [[-1 for i in range(s_x + 1)] for i in range(s_y + 1)]
+    boom = [[0 for i in range(s_x)] for i in range(s_y)]
+
 
 
 b0 = Button(tk, text="Показать корабли противника", command=button_show_enemy)
@@ -85,6 +86,7 @@ b0.place(x=size_canvas_x + 20, y=30)
 
 b1 = Button(tk, text="Начать заново!", command=button_begin_again)
 b1.place(x=size_canvas_x + 20, y=70)
+
 
 def draw_point(x, y):
     if enemy_ships[y][x] == 0:
@@ -106,6 +108,7 @@ def draw_point(x, y):
 
 
 
+
 def add_to_all(event):
     global points
     _type = 0  # ЛКМ
@@ -118,7 +121,7 @@ def add_to_all(event):
     ip_x = mouse_x // step_x
     ip_y = mouse_y // step_y
     # print(ip_x, ip_y, "_type:", _type)
-    if ip_x < s_x and ip_y < s_y:
+    if ip_x < s_x  and ip_y < s_y:
         if points[ip_y][ip_x] == -1:
             points[ip_y][ip_x] = _type
             draw_point(ip_x, ip_y)
@@ -131,7 +134,11 @@ def add_to_all(event):
 
 canvas.bind_all("<Button-1>", add_to_all)  # ЛКМ
 canvas.bind_all("<Button-3>", add_to_all)  # ПКМ
+
+
+
 enemy_ships = generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3)
+
 
 while app_running:
     if app_running:
