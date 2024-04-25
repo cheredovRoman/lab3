@@ -3,7 +3,6 @@ def generate_enemy_ships(size, fill):
     if size == 0:
         return 0
     enemy_ships = [[fill for i in range(size)] for i in range(size)]
-    enemy_ships[1] = 1
     return enemy_ships
 def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
     global enemy_ships
@@ -81,3 +80,6 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
         # print(ships_list)
         #print(enemy_ships)
         return enemy_ships
+
+def check_winner(enemy_ships, boom):
+        win = False

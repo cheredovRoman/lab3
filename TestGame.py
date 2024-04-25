@@ -1,6 +1,7 @@
 import unittest
 from logic import *
 from game import draw_point
+from game import check_winner
 
 class TestGame(unittest.TestCase):
 
@@ -20,8 +21,12 @@ class TestGame(unittest.TestCase):
         # def test_draw_point(self):
         #     self.assertEqual(draw_point(1, 1), 1)
 
-    def test_check_winner(self):
-        self.assertTrue(check_winner(), False)
+    def test_check_winner_false(self):
+        self.assertFalse(check_winner(1, 1), False)
+
+    def test_check_winner_true(self):
+        self.assertTrue(check_winner(1, 1), True)
+
 
 if __name__ == '__main__':
     unittest.main()
