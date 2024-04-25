@@ -1,21 +1,28 @@
 import time
 from tkinter import *
 from tkinter import messagebox
+from logic import *
 
 tk = Tk()
 app_running = True
-
+# Размер холста
 size_canvas_x = 500
 size_canvas_y = 500
 
 s_x = s_y = 10  # Размер игрового поля
 step_x = size_canvas_x // s_x  # Шаг по горизонтали
 step_y = size_canvas_y // s_y  # Шаг по вертикали
-size_canvas_x = step_x * s_x
-size_canvas_y = step_y * s_y
+size_canvas_x = step_x * s_x # Вычисление новых размеров холста
+size_canvas_y = step_y * s_y # Вычисление новых размеров холста
+menu_x = 250 # Размер области меню
+ships = s_x // 2 # определяем максимальное количество кораблей
+# Определяем длинну кораблей
+ship_len1 = s_x // 5
+ship_len2 = s_x // 3
+ship_len3 = s_x // 2
 
-menu_x = 250
-
+enemy_ships = [[0 for i in range(s_y + 1)] for i in range(s_x + 1)]
+list_ids = []
 
 def on_closing():
     global app_running
@@ -48,7 +55,12 @@ def button_show_enemy():
 
 
 def button_begin_again():
-    pass
+    for i in range(0, s_x):
+        for j in range(0, s_y):
+            if enemy_ships[j][i] > 0:
+                _id = canvas.create_rectangle(i * step_x, j * step_y, i * step_x + step_x, j * step_y + step_y,
+                                              fill="red")
+                list_ids.append(_id)
 
 
 b0 = Button(tk, text="Показать корабли противника", command=button_show_enemy)
@@ -73,6 +85,7 @@ def add_to_all(event):
 
 canvas.bind_all("<Button-1>", add_to_all)  # ЛКМ
 canvas.bind_all("<Button-3>", add_to_all)  # ПКМ
+enemy_ships = generate_enemy_ships(ship_len1, ship_len2, ship_len3, ships, s_x, s_y)
 
 while app_running:
     if app_running:
