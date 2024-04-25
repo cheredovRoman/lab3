@@ -81,8 +81,10 @@ def generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3):
         #print(enemy_ships)
         return enemy_ships
 
-def check_winner(enemy_ships, boom):
+def check_winner(x, y, enemy_ships, boom):
         win = False
+        if enemy_ships[y][x] > 0:
+            boom[y][x] = enemy_ships[y][x]
         sum_enemy_ships = sum(sum(i) for i in zip(*enemy_ships))
         sum_boom = sum(sum(i) for i in zip(*boom))
         if sum_enemy_ships == sum_boom:
