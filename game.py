@@ -2,6 +2,7 @@ import time
 from tkinter import *
 from tkinter import messagebox
 from logic import *
+global boom
 
 tk = Tk()
 app_running = True
@@ -25,6 +26,9 @@ enemy_ships = [[0 for i in range(s_x + 1)] for i in range(s_y + 1)]
 list_ids = []
 # список где отмечаются выделенные клетки
 points = [[-1 for i in range(s_x + 1)] for i in range(s_y)]
+
+boom = [[0 for i in range(s_x)] for i in range(s_y)]
+
 # список попаданий по кораблям противника
 boom = [[0 for i in range(s_x + 1)] for i in range(s_y)]
 def on_closing():
@@ -118,7 +122,7 @@ def add_to_all(event):
         if points[ip_y][ip_x] == -1:
             points[ip_y][ip_x] = _type
             draw_point(ip_x, ip_y)
-            if check_winner():
+            if check_winner(ip_x, ip_y, enemy_ships, boom):
                 print("Победа!")
                 points = [[10 for i in range(s_x + 1)] for i in range(s_y + 1)]
         print(len(list_ids))
