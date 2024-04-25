@@ -12,5 +12,12 @@ class TestGame(unittest.TestCase):
         enemy_ships = [[0 for i in range(5)] for i in range(5)]
         self.assertEqual(generate_enemy_ships(5, 0), enemy_ships)
 
+    def test_generate_enemy_ships(self):
+        enemy_ships = [[0 for i in range(5)] for i in range(5)]
+        self.assertEqual(generate_enemy_ships(5, 0), enemy_ships)
+
+    def test_draw_point(self):
+        self.assertEqual(draw_point(1, 1), 1)
+
 if __name__ == '__main__':
     unittest.main()

@@ -6,8 +6,8 @@ from logic import *
 tk = Tk()
 app_running = True
 # Размер холста
-size_canvas_x = 500
-size_canvas_y = 500
+size_canvas_x = 600
+size_canvas_y = 600
 
 s_x = s_y = 10  # Размер игрового поля
 step_x = size_canvas_x // s_x  # Шаг по горизонтали
@@ -21,7 +21,7 @@ ship_len1 = s_x // 5
 ship_len2 = s_x // 3
 ship_len3 = s_x // 2
 
-enemy_ships = [[0 for i in range(s_y + 1)] for i in range(s_x + 1)]
+enemy_ships = [[0 for i in range(s_x + 1)] for i in range(s_y + 1)]
 list_ids = []
 
 def on_closing():
@@ -51,16 +51,21 @@ draw_table()
 
 
 def button_show_enemy():
-    pass
-
-
-def button_begin_again():
     for i in range(0, s_x):
         for j in range(0, s_y):
             if enemy_ships[j][i] > 0:
                 _id = canvas.create_rectangle(i * step_x, j * step_y, i * step_x + step_x, j * step_y + step_y,
                                               fill="red")
                 list_ids.append(_id)
+
+
+def button_begin_again():
+    global enemy_ships
+    global list_ids
+    for el in list_ids:
+        canvas.delete(el)
+    list_ids = []
+    enemy_ships = generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3)
 
 
 b0 = Button(tk, text="Показать корабли противника", command=button_show_enemy)
@@ -81,11 +86,13 @@ def add_to_all(event):
     ip_x = mouse_x // step_x
     ip_y = mouse_y // step_y
     # print(ip_x, ip_y, "_type:", _type)
+    if ip_x < s_x and ip_y < s_y:
+        draw_point(ip_x, ip_y)
 
 
 canvas.bind_all("<Button-1>", add_to_all)  # ЛКМ
 canvas.bind_all("<Button-3>", add_to_all)  # ПКМ
-enemy_ships = generate_enemy_ships(ship_len1, ship_len2, ship_len3, ships, s_x, s_y)
+enemy_ships = generate_ships(ships, s_x, s_y, ship_len1, ship_len2, ship_len3)
 
 while app_running:
     if app_running:
