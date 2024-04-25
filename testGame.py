@@ -145,5 +145,6 @@ def test_check_winner_true(self):
         expected_score = 0
         self.assertEqual(score(board), expected_score)
 
+
 if __name__ == '__main__':
     unittest.main()
