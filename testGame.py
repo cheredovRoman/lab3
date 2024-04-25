@@ -1,13 +1,12 @@
 import unittest
 from logic import *
-from game import draw_point
 from game import check_winner
 
 class TestGame(unittest.TestCase):
 
     # def test_game_class_exists(self):
     #     self.assertTrue('logic' in globals())
-    def test_generate_enemy_ships(self):
+    def test_generate_enem_ships(self):
         self.assertEqual(generate_enemy_ships(0, 0), 0)
 
     def test_generate_enemy_ships_size_5(self):
@@ -86,12 +85,12 @@ def test_check_winner_true(self):
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             ]
         expected_count = 2
@@ -99,25 +98,25 @@ def test_check_winner_true(self):
 
         def test_score_all_hits(self):
             board = [
-                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 4, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 4, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 4, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 4, 0, 3, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             ]
-            expected_score = 20
+            expected_score = 7
             self.assertEqual(score(board), expected_score)
 
     def test_score_partial_hits(self):
         board = [
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
+    4[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -126,7 +125,7 @@ def test_check_winner_true(self):
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]
-        expected_score = 12
+        expected_score = 4
         self.assertEqual(score(board), expected_score)
 
     def test_score_no_hits(self):

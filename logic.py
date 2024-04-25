@@ -100,3 +100,33 @@ def check_winner(x, y, enemy_ships, boom):
         if sum_enemy_ships == sum_boom:
             win = True
         return win
+def score(board):
+    """
+    Функция принимает на вход игровое поле board и возвращает количество очков,
+    заработанных игроком
+    """
+    count4 = 0
+    count3 = 0
+    count2 = 0
+    score = 0
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 4:
+                count4 += 1
+                score += 1
+            if board[i][j] == 3:
+                count3 += 1
+                score += 1
+            if board[i][j] == 2:
+                count2 += 1
+                score += 1
+            if board[i][j] == 1:
+                score += 2
+            if (count4 % 4) == 0 & count4 != 0:
+                score += 1
+            if (count3 % 3) == 0 & count3 != 0:
+                score += 2
+            if (count2 % 2) == 0 & count2 != 0:
+                score += 3
+            print(score)
+    return score
